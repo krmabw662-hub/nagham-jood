@@ -38,7 +38,7 @@
     <!-- الهيدر وشريط التنقل المتجاوب -->
     <header class="sticky top-0 z-40 w-full border-b border-white/5 glass-panel">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="showView('home')">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.showView('home')">
                 <div class="w-12 h-12 rounded-xl overflow-hidden bg-luxury-dark border border-gold-500/20 p-1 flex items-center justify-center">
                     <img src="logo.png" alt="شعار استديو نغم جود" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <svg class="w-5 h-5 text-gold-500 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
@@ -50,31 +50,31 @@
             </div>
             
             <nav class="hidden md:flex items-center gap-2">
-                <button onclick="showView('home')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الرئيسية</button>
-                <button onclick="showView('services')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الخدمات</button>
-                <button onclick="showView('portfolio')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">معرض الأعمال</button>
-                <button onclick="showView('contact')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">اتصل بنا</button>
+                <button onclick="window.showView('home')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الرئيسية</button>
+                <button onclick="window.showView('services')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الخدمات</button>
+                <button onclick="window.showView('portfolio')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">معرض الأعمال</button>
+                <button onclick="window.showView('contact')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">اتصل بنا</button>
             </nav>
 
             <div class="flex items-center gap-2">
-                <button onclick="showView('admin')" class="px-3 py-2 rounded-xl text-xs font-bold border border-gold-500/20 bg-white/5 text-gold-400 hover:bg-gold-500/10 transition-all">
+                <button onclick="window.showView('admin')" class="px-3 py-2 rounded-xl text-xs font-bold border border-gold-500/20 bg-white/5 text-gold-400 hover:bg-gold-500/10 transition-all">
                     لوحة الإدارة
                 </button>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 p-2">
+                <button onclick="window.toggleMobileMenu()" class="md:hidden text-gray-300 p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-luxury-dark/95 p-4 flex flex-col gap-2">
-            <button onclick="showView('home')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الرئيسية</button>
-            <button onclick="showView('services')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الخدمات</button>
-            <button onclick="showView('portfolio')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">معرض الأعمال</button>
-            <button onclick="showView('contact')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">اتصل بنا</button>
+            <button onclick="window.showView('home')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الرئيسية</button>
+            <button onclick="window.showView('services')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الخدمات</button>
+            <button onclick="window.showView('portfolio')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">معرض الأعمال</button>
+            <button onclick="window.showView('contact')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">اتصل بنا</button>
         </div>
     </header>
 
-    <!-- المحتوى العام المضمون والآمن -->
+    <!-- المحتوى العام المضمن والآمن -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
         
         <!-- 1. قسم الصفحة الرئيسية -->
@@ -87,15 +87,15 @@
                 <h1 class="text-3xl sm:text-6xl font-black bg-gradient-to-l from-gold-400 via-amber-200 to-white bg-clip-text text-transparent mb-6">استديو نغم جود</h1>
                 <p id="about-text-display" class="max-w-3xl mx-auto text-gray-300 text-sm sm:text-base leading-relaxed px-6 font-light"></p>
                 <div class="mt-8 flex flex-wrap justify-center gap-4 px-4">
-                    <button onclick="showView('services')" class="bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black px-6 py-3.5 rounded-xl text-sm shadow-lg active:scale-95 transition-transform">اكتشف خدماتنا</button>
-                    <button onclick="openOrderModal('طلب عام من الاستديو')" class="bg-white/5 border border-white/10 text-white font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-white/10 transition-all">اطلب تنفيذ بالاسم</button>
+                    <button onclick="window.showView('services')" class="bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black px-6 py-3.5 rounded-xl text-sm shadow-lg active:scale-95 transition-transform">اكتشف خدماتنا</button>
+                    <button onclick="window.openOrderModal('طلب عام من الاستديو')" class="bg-white/5 border border-white/10 text-white font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-white/10 transition-all">اطلب تنفيذ بالاسم</button>
                 </div>
             </section>
 
             <!-- عرض شبكة الخدمات في الرئيسية -->
             <section class="space-y-8">
                 <div class="flex justify-between items-center">
-                    <button onclick="showView('services')" class="text-gold-500 hover:text-gold-400 font-bold text-sm">عرض الكل الـ 13 خدمة ←</button>
+                    <button onclick="window.showView('services')" class="text-gold-500 hover:text-gold-400 font-bold text-sm">عرض جميع الخدمات ←</button>
                     <h2 class="text-xl sm:text-2xl font-extrabold text-white border-r-4 border-gold-500 pr-3">خدماتنا الإبداعية</h2>
                 </div>
                 <div id="home-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -108,25 +108,25 @@
             <div id="all-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
-        <!-- 3. قسم معرض الأعمال التوضيحي المحدث ليتسع لـ 8 أعمال بالكامل -->
+        <!-- 3. قسم معرض الأعمال التلقائي المطور (ذكي ومرن) -->
         <div id="view-portfolio" class="app-view hidden space-y-8">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">روائع من إنتاجاتنا الفنية المعمدة</h2>
             <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
-        <!-- 4. قسم اتصل بنا وقنوات التواصل المعتمدة -->
+        <!-- 4. قسم اتصل بنا -->
         <div id="view-contact" class="app-view hidden max-w-xl mx-auto space-y-6">
             <h2 class="text-2xl font-extrabold text-white text-center mb-6">قنوات التواصل المباشرة</h2>
             <div class="glass-panel p-6 rounded-2xl border border-gold-500/10 space-y-3" id="contact-channels-list"></div>
         </div>
 
-        <!-- 5. لوحة الإدارة الفورية فائقة الاستقرار والآمنة -->
+        <!-- 5. لوحة الإدارة الفورية -->
         <div id="view-admin" class="app-view hidden max-w-2xl mx-auto space-y-6 text-right">
             <h2 class="text-xl font-bold text-gold-400 border-b border-white/10 pb-3">لوحة التحكم وتحديث المحتوى الفوري</h2>
             <div class="glass-panel p-6 rounded-xl space-y-4">
                 <label class="block text-sm font-bold text-white">تعديل وصف ونبذة الموقع التعريفية</label>
                 <textarea id="admin-about-input" rows="4" class="w-full bg-stone-900 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-500"></textarea>
-                <button onclick="saveAboutText()" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-5 py-2 rounded-lg text-xs transition-colors">حفظ التعديلات ونشرها فوراً</button>
+                <button onclick="window.saveAboutText()" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-5 py-2 rounded-lg text-xs transition-colors">حفظ التعديلات ونشرها فوراً</button>
             </div>
         </div>
     </main>
@@ -137,7 +137,7 @@
         <p class="max-w-md mx-auto text-[11px] leading-relaxed px-4">تنفيذ وتجهيز أرقى الزفات والشيلات الحصرية بالأسماء وبأعلى معايير الهندسة الصوتية لتوثيق أسعد لحظاتكم.</p>
     </footer>
 
-    <!-- زر الواتساب العائم الثابت بأيقونة مدمجة -->
+    <!-- زر الواتساب العائم الثابت -->
     <a id="floating-whatsapp" href="https://wa.me/966503931934" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-emerald-600 rounded-full shadow-2xl flex items-center justify-center text-white text-2xl hover:scale-110 active:scale-95 transition-transform">
         <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.288 1.447 4.805 1.448 5.4 0 9.795-4.395 9.798-9.796.002-2.617-1.013-5.078-2.862-6.928C16.48 2.029 14.021.991 11.4.991c-5.405 0-9.801 4.397-9.805 9.8-.001 1.77.476 3.493 1.383 5.02L1.935 21.8l6.126-1.609z"/></svg>
     </a>
@@ -145,9 +145,9 @@
     <!-- نافذة المودال لحجز وتفصيل الطلب بالاسم -->
     <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm hidden">
         <div class="w-full max-w-md glass-panel p-6 rounded-2xl relative text-right">
-            <button onclick="closeOrderModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gold-400">✕</button>
+            <button onclick="window.closeOrderModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gold-400">✕</button>
             <h3 class="text-lg font-bold text-gold-400 mb-4 text-center border-b border-white/5 pb-2">طلب تنفيذ وتخصيص بالاسم</h3>
-            <form onsubmit="handleFormOrderSubmit(event)" class="space-y-4">
+            <form onsubmit="window.handleFormOrderSubmit(event)" class="space-y-4">
                 <input type="hidden" id="modal-item-name" />
                 <div>
                     <label class="block text-xs text-gray-400 mb-1">الاسم الكريم</label>
@@ -170,7 +170,7 @@
         </div>
     </div>
 
-    <!-- الكود البرمجي النقي الموثق والمثبت في النطاق العالمي -->
+    <!-- الكود البرمجي النقي الفعال والمحمي بالكامل في النطاق العالمي -->
     <script>
         window.addEventListener('DOMContentLoaded', function() {
             var initialAboutText = "استديو نغم جود هو وجهتكم الإبداعية في عالم الزفات والمناسبات، نقدم تنفيذ الزفات بالأسماء، وزفات الملكة، وعقد القران، وشيلات التخرج، والمواليد، والقصائد، وخدمات إزالة الحقوق والنسخ بدون موسيقى، بجودة احترافية وتصميم صوتي مميز يجعل كل مناسبة أكثر تميزًا.";
@@ -192,7 +192,7 @@
                 { title: 'الشعر', desc: 'قصائد مدح وفخر وتوثيق لتواريخ العائلات والقبائل بأسلوب جزيل وبليغ.', img: 'service13.jpg' }
             ];
 
-            var aboutText = localStorage.getItem('nagham_jood_about_v5') || initialAboutText;
+            var aboutText = localStorage.getItem('nagham_jood_about_v6') || initialAboutText;
             var servicesList = defaultServices;
 
             window.showView = function(viewId) {
@@ -218,7 +218,7 @@
 
             window.saveAboutText = function() {
                 aboutText = document.getElementById('admin-about-input').value;
-                localStorage.setItem('nagham_jood_about_v5', aboutText);
+                localStorage.setItem('nagham_jood_about_v6', aboutText);
                 document.getElementById('about-text-display').innerText = aboutText;
                 alert('تم التحديث الفوري والناجح بنجاح وموقعك جاهز الحين!');
             };
@@ -254,10 +254,10 @@
             portfolioGrid.innerHTML = '';
 
             servicesList.forEach(function(srv, index) {
-                var cardHTML = '<div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">' +
-                    '<div class="h-44 w-full bg-zinc-900 relative">' +
-                        '<img src="' + srv.img + '" alt="' + srv.title + '" class="w-full h-full object-cover" onerror="this.src=\'logo.png\';">' +
-                    '</div>' +
-                    '<div class="p-5 flex flex-col flex-grow text-right">' +
-                        '<h3 class="text-base font-bold text-gold-500 mb-1.5">' + srv.title + '</h3>' +
-                        '<p class
+                var cardHTML = `
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                        <div class="h-44 w-full bg-zinc-900 relative">
+                            <img src="${srv.img}" alt="${srv.title}" class="w-full h-full object-cover" onerror="this.src='logo.png';">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow text-right">
+                            <h3 class="text-base font-bold text-gold-500 mb-1.5">${sr
