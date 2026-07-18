@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استديو نغم جود | للزفات والشيلات الفاخرة</title>
+<!-- خطوط جوجل الفاخرة - خط تجول -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<!-- مكتبة الأيقونات الحديثة FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Tailwind CSS للتصميم المتجاوب والسريع -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- مكتبات React و ReactDOM للتشغيل المباشر داخل المتصفح -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<!-- مترجم Babel لتشغيل JSX -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Tajawal', 'sans-serif'],
+},
+colors: {
+gold: {
+50: '#fdf9ec',
+100: '#fbf0cf',
+200: '#f7e19f',
+300: '#f1cb65',
+400: '#ebae35',
+500: '#d4af37', // الذهبي الملكي
+600: '#b68927',
+700: '#946720',
+},
+luxury: {
+dark: '#050507', // الأسود العميق
+card: 'rgba(20, 20, 30, 0.6)',
+purple: '#1c0d2d', // البنفسجي الفاخر
+}
+}
+}
+}
+}
+</script>
+<style>
+body {
+background-color: #050507;
+color: #f3f4f6;
+overflow-x: hidden;
+}
+/* خلفية متموجة فاخرة باللون البنفسجي والذهبي /
+.ambient-glow-1 {
+background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);
+}
+.ambient-glow-2 {
+background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(0,0,0,0) 65%);
+}
+/ تأثير الزجاج الفاخر /
+.glass-panel {
+background: rgba(15, 15, 25, 0.7);
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+border: 1px solid rgba(212, 175, 55, 0.08);
+}
+.glass-card {
+background: rgba(22, 20, 32, 0.55);
+backdrop-filter: blur(8px);
+border: 1px solid rgba(255, 255, 255, 0.03);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card:hover {
+border-color: rgba(212, 175, 55, 0.25);
+box-shadow: 0 12px 30px rgba(147, 51, 234, 0.15);
+transform: translateY(-5px);
+}
+/ تخصيص شريط التمرير */
+::-webkit-scrollbar {
+width: 8px;
+}
+::-webkit-scrollbar-track {
+background: #050507;
+}
+::-webkit-scrollbar-thumb {
+background: #d4af37;
+border-radius: 4px;
+}
+</style>
+</head>
+<body class="font-sans antialiased selection:bg-gold-500/30 selection:text-white">
+
+<!-- المكون الرئيسي للتطبيق -->
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+// البيانات الافتراضية للخدمات (الـ 13 المطلوبة)
+const DEFAULT_SERVICES = [
+{ id: 1, title: 'زفات بالأسماء', desc: 'صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.', image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600' },
+{ id: 2, title: 'زفات ملكة', desc: 'أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.', image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=600' },
+{ id: 3, title: 'زفات عقد قران', desc: 'تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.', image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=600' },
+{ id: 4, title: 'زفات عروس', desc: 'طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600' },
+{ id: 5, title: 'شيلات تخرج', desc: 'تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600' },
+{ id: 6, title: 'شيلات مواليد', desc: 'نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.', image: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&q=80&w=600' },
+{ id: 7, title: 'شيلات ترحيب', desc: 'استقبلوا ضيوفكم بأجود شيلات الترحيب والفخر المناسبة لكافة المحافل.', image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=600' },
+{ id: 8, title: 'شيلات مناسبات', desc: 'تغطية شاملة لكل المناسبات والأعياد العائلية والوطنية بتناسق صوتي تام.', image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80&w=600' },
+{ id: 9, title: 'شيلات خاصة', desc: 'إعداد وتنفيذ ألحان حصرية وفقاً لرغبة العميل وبأفكار إبداعية جديدة.', image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=600' },
+{ id: 10, title: 'زفات بدون موسيقى', desc: 'تنفيذ أرقى الزفات باستخدام المؤثرات البشرية والآهات الطبيعية الفاخرة.', image: 'https://images.unsplash.com/photo-1484755560695-a4c7300c5c29?auto=format&fit=crop&q=80&w=600' },
+{ id: 11, title: 'إزالة الحقوق', desc: 'خدمة سحب وإزالة المؤثرات والحقوق الصوتية والنسخ باحترافية وجودة عالية.', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=600' },
+{ id: 12, title: 'القصائد', desc: 'كتابة وإلقاء قصائد شعرية فصحى ونبطية بأصوات نخبة من الشعراء والمنشدين.', image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=600' },
+{ id: 13, title: 'الشعر', desc: 'قصائد مدح وفخر وتوثيق لتواريخ العائلات والقبائل بأسلوب جزيل وبليغ.', image: 'https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=600' },
+ ];
+
+// الأعمال الافتراضية لمعرض الأعمال الفني
+const DEFAULT_PORTFOLIO = [
+{ id: 1, title: 'زفة عهد الأماني الملكية', type: 'زفة عروس بالاسم', desc: 'عمل فاخر مخصص لدخول العروس بإيقاع فخم وتوزيع ملكي ساحر.', image: 'https://images.unsplash.com/photo-1519225495810-7512c696505a?auto=format&fit=crop&q=80&w=600', gallery: ['https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600', 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=600'] },
+{ id: 2, title: 'شيلة تخرج نجوم المعالي', type: 'شيلة تخرج بالاسم', desc: 'عمل حماسي مبهج يصف رحلة الكفاح والنجاح بتوزيع صوتي راقٍ.', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600', gallery: [] },
+{ id: 3, title: 'زفة عقد قران الفرحة التامة', type: 'زفة عقد قران بالاسم', desc: 'تلازم الكلمات العذبة مع تهاني الأهل في مناسبة الميثاق والقران السعيد.', image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=600', gallery: [] },
+{ id: 4, title: 'شيلة ترحيب هيل المضيف', type: 'شيلة ترحيب', desc: 'قصيدة فخر وترحيب بالضيوف الكرام بإيقاعات جنوبية حماسية رائعة.', image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=600', gallery: [] },
+{ id: 5, title: 'زفة عريس هيبة حضور', type: 'زفات بالأسماء', desc: 'زفة دخول العريس بصوت رخيم يعبر عن الهيبة ومشاعر الفخر العميقة.', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600', gallery: [] },
+{ id: 6, title: 'قصيدة وفاء للآباء والكرام', type: 'القصائد والشعر', desc: 'إلقاء شعري مؤثر ومسجل بأحدث تقنيات الاستديو مع مؤثرات هادئة.', image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=600', gallery: [] }
+];
+
+// إعدادات التواصل الافتراضية
+const DEFAULT_SETTINGS = {
+about: 'استديو نغم جود هو وجهتكم الإبداعية في عالم الزفات والمناسبات، نقدم تنفيذ الزفات بالأسماء، وزفات الملكة، وعقد القران، وشيلات التخرج، والمواليد، والقصائد، وخدمات إزالة الحقوق والنسخ بدون موسيقى، بجودة احترافية وتصميم صوتي مميز يجعل كل مناسبة أكثر تميزًا.',
+whatsapp: '0503931934',
+instagram: 'Zf__jood',
+tiktok: 'Zf__jood',
+telegram: 'Zf__jood'
+};
+
+function App() {
+// نظام التوجيه والمحتوى (الرئيسية، الخدمات، الأعمال، تفاصيل، طلب، تواصل، إدارة)
+const [currentView, setCurrentView] = useState('home');
+const [selectedItem, setSelectedItem] = useState(null); // للعمل المختار في صفحة التفاصيل
+const [modalData, setModalData] = useState({ isOpen: false, itemName: '', type: '' });
+
+// استخدام LocalStorage لحفظ وتحديث المحتوى ديناميكياً
+const [services, setServices] = useState(() => {
+const saved = localStorage.getItem('jood_services');
+return saved ? JSON.parse(saved) : DEFAULT_SERVICES;
+});
+
+const [portfolio, setPortfolio] = useState(() => {
+const saved = localStorage.getItem('jood_portfolio');
+return saved ? JSON.parse(saved) : DEFAULT_PORTFOLIO;
+});
+
+const [settings, setSettings] = useState(() => {
+const saved = localStorage.getItem('jood_settings');
+return saved ? JSON.parse(saved) : DEFAULT_SETTINGS;
+});
+
+// مزامنة البيانات وتأكيد حفظها
+useEffect(() => {
+localStorage.setItem('jood_services', JSON.stringify(services));
+}, [services]);
+
+useEffect(() => {
+localStorage.setItem('jood_portfolio', JSON.stringify(portfolio));
+}, [portfolio]);
+
+useEffect(() => {
+localStorage.setItem('jood_settings', JSON.stringify(settings));
+}, [settings]);
+
+// فتح نافذة الطلب وتجهيزها
+const openOrderModal = (itemName, type) => {
+setModalData({ isOpen: true, itemName, type });
+};
+
+const closeOrderModal = () => {
+setModalData({ isOpen: false, itemName: '', type: '' });
+};
+
+return (
+<div className="min-h-screen flex flex-col justify-between relative">
+{/* إضاءات محيطية للتصميم الفاخر */}
+<div className="absolute top-0 right-[15%] w-[600px] h-[600px] ambient-glow-1 -z-10 pointer-events-none"></div>
+<div className="absolute top-[40%] left-[10%] w-[500px] h-[500px] ambient-glow-2 -z-10 pointer-events-none"></div>
+<div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] ambient-glow-1 -z-10 pointer-events-none"></div>
+
+{/* الهيدر وشريط التنقل */}
+<header className="sticky top-0 z-40 w-full border-b border-white/5 glass-panel transition-all duration-300">
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+{/* الشعار الفاخر */}
+<div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('home')}>
+<div className="relative w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-800 to-gold-500 p-[1.5px] shadow-lg shadow-purple-900/40">
+<div className="w-full h-full bg-luxury-dark rounded-[10px] flex items-center justify-center">
+<i className="fa-solid fa-music text-gold-400 text-xl animate-pulse"></i>
+</div>
+</div>
+<div className="text-right">
+<span className="block font-black text-xl tracking-wide bg-gradient-to-l from-gold-300 via-gold-500 to-amber-200 bg-clip-text text-transparent">استديو نغم جود</span>
+<span className="block text-[10px] text-purple-300/80 font-medium uppercase tracking-widest -mt-1">للزفات والشيلات الفاخرة</span>
+</div>
+</div>
+
+{/* روابط التنقل */}
+<nav className="hidden md:flex items-center gap-1">
+{[
+{ id: 'home', label: 'الرئيسية' },
+{ id: 'services', label: 'الخدمات' },
+{ id: 'portfolio', label: 'معرض الأعمال' },
+{ id: 'order', label: 'طلب تنفيذ بالاسم' },
+{ id: 'contact', label: 'اتصل بنا' }
+ ].map((tab) => (
+<button
+key={tab.id}
+onClick={() => setCurrentView(tab.id)}
+className={px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
+currentView === tab.id
+? 'bg-gradient-to-l from-gold-500 to-amber-600 text-black shadow-lg shadow-gold-500/10'
+: 'text-gray-300 hover:text-gold-400 hover:bg-white/5'
+}`}
+>
+{tab.label}
+</button>
+))}
+</nav>
+
+{/* زر لوحة التحكم السريعة في الهيدر */}
+<div className="flex items-center gap-3">
+<button
+onClick={() => setCurrentView('admin')}
+className={px-4 py-2 rounded-lg text-xs font-bold border transition-all${
+currentView === 'admin'
+? 'bg-purple-600 border-purple-500 text-white shadow-lg'
+: 'bg-white/5 border-white/10 text-gold-400 hover:bg-gold-500/10 hover:border-gold-500/30'
+}`}
+>
+<i className="fa-solid fa-sliders-h ml-2"></i> لوحة الإدارة
+</button>
+
+{/* قائمة الهاتف المحمول */}
+<div className="md:hidden">
+<button
+onClick={() => setCurrentView(currentView === 'menu' ? 'home' : 'menu')}
+className="text-gray-300 p-2 hover:text-gold-400"
+>
+<i className={fa-solid ${currentView === 'menu' ? 'fa-times' : 'fa-bars'} text-2xl`}></i>
+</button>
+</div>
+</div>
+</div>
+
+{/* قائمة الهواتف المنسدلة */}
+{currentView === 'menu' && (
+<div className="md:hidden glass-panel border-t border-white/5 p-4 flex flex-col gap-2 animate-fadeIn">
+{[
+{ id: 'home', label: 'الرئيسية', icon: 'fa-home' },
+{ id: 'services', label: 'الخدمات', icon: 'fa-concierge-bell' },
+{ id: 'portfolio', label: 'معرض الأعمال', icon: 'fa-images' },
+{ id: 'order', label: 'طلب تنفيذ بالاسم', icon: 'fa-file-signature' },
+{ id: 'contact', label: 'اتصل بنا', icon: 'fa-headset' },
+{ id: 'admin', label: 'لوحة الإدارة', icon: 'fa-sliders-h' }
+ ].map((tab) => (
+<button
+key={tab.id}
+onClick={() => setCurrentView(tab.id)}
+className="w-full text-right px-4 py-3 rounded-xl flex items-center gap-3 text-base font-bold text-gray-300 hover:bg-gold-500/10 hover:text-gold-400 transition-colors"
+>
+<i className={fa-solid${tab.icon} w-6 text-gold-500`}></i>
+{tab.label}
+</button>
+))}
+</div>
+)}
+</header>
+
+{/* المحتوى المتغير بحسب التوجيه النشط */}
+<main className="flex-grow py-8 px-4 sm:px-6 lg:px-8 max-w-7xl w-full mx-auto">
+
+{/* 1. صفحة الرئــيـسـيـة */}
+{currentView === 'home' && (
+<div className="space-y-24 animate-fadeIn">
+
+{/* قسم الـ Hero الفخم جداً */}
+<section className="relative text-center py-16 sm:py-28 rounded-3xl overflow-hidden glass-panel border border-gold-500/10 shadow-2xl">
+<div className="absolute inset-0 bg-gradient-to-b from-purple-950/20 via-transparent to-transparent pointer-events-none"></div>
+
+{/* دائرة وشم صوتي أو شعار مضيء خلفي */}
+<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-purple-700/5 blur-3xl pointer-events-none"></div>
+
+{/* شعار استديو نغم جود الإبداعي */}
+<div className="relative w-44 h-44 mx-auto mb-8 flex items-center justify-center">
+<div className="absolute inset-0 rounded-full bg-gradient-to-r from-gold-500 via-purple-600 to-gold-400 animate-spin" style={{ animationDuration: '12s' }}></div>
+<div className="absolute inset-[3px] rounded-full bg-luxury-dark flex flex-col items-center justify-center p-4">
+<i className="fa-solid fa-microphone-lines text-gold-400 text-5xl mb-2"></i>
+<span className="text-[10px] text-gold-300 tracking-widest font-bold uppercase">NAGHAM JOOD</span>
+</div>
+</div>
+
+<h1 className="text-4xl sm:text-7xl font-extrabold tracking-tight mb-6">
