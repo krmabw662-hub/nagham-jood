@@ -6,7 +6,7 @@
     <title>استديو نغم جود | للزفات والشيلات الفاخرة</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -74,7 +74,7 @@
         </div>
     </header>
 
-    <!-- المحتوى العام المضمن والآمن -->
+    <!-- المحتوى العام المضمون والآمن 100% وثابت بالكامل -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
         
         <!-- 1. قسم الصفحة الرئيسية -->
@@ -98,166 +98,111 @@
                     <button onclick="window.showView('services')" class="text-gold-500 hover:text-gold-400 font-bold text-sm">عرض جميع الخدمات ←</button>
                     <h2 class="text-xl sm:text-2xl font-extrabold text-white border-r-4 border-gold-500 pr-3">خدماتنا الإبداعية</h2>
                 </div>
-                <div id="home-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service1.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                        <div class="p-5 flex flex-col flex-grow text-right">
+                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات بالأسماء</h3>
+                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.</p>
+                            <button onclick="window.openOrderModal('زفات بالأسماء')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service2.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                        <div class="p-5 flex flex-col flex-grow text-right">
+                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات ملكة</h3>
+                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.</p>
+                            <button onclick="window.openOrderModal('زفات ملكة')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service3.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                        <div class="p-5 flex flex-col flex-grow text-right">
+                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات عقد قران</h3>
+                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.</p>
+                            <button onclick="window.openOrderModal('زفات عقد قران')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service4.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                        <div class="p-5 flex flex-col flex-grow text-right">
+                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات عروس</h3>
+                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.</p>
+                            <button onclick="window.openOrderModal('زفات عروس')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service5.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                        <div class="p-5 flex flex-col flex-grow text-right">
+                            <h3 class="text-base font-bold text-gold-500 mb-1.5">شيلات تخرج</h3>
+                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.</p>
+                            <button onclick="window.openOrderModal('شيلات تخرج')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service6.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                        <div class="p-5 flex flex-col flex-grow text-right">
+                            <h3 class="text-base font-bold text-gold-500 mb-1.5">شيلات مواليد</h3>
+                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.</p>
+                            <button onclick="window.openOrderModal('شيلات مواليد')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
 
-        <!-- 2. قسم صفحة الخدمات الكاملة -->
+        <!-- 2. قسم صفحة الخدمات الكاملة المكتوبة بالكامل مباشرة -->
         <div id="view-services" class="app-view hidden space-y-8">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">كافة الخدمات الفنية المتاحة</h2>
-            <div id="all-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        </div>
-
-        <!-- 3. قسم معرض الأعمال التلقائي المطور (ذكي ومرن) -->
-        <div id="view-portfolio" class="app-view hidden space-y-8">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">روائع من إنتاجاتنا الفنية المعمدة</h2>
-            <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        </div>
-
-        <!-- 4. قسم اتصل بنا -->
-        <div id="view-contact" class="app-view hidden max-w-xl mx-auto space-y-6">
-            <h2 class="text-2xl font-extrabold text-white text-center mb-6">قنوات التواصل المباشرة</h2>
-            <div class="glass-panel p-6 rounded-2xl border border-gold-500/10 space-y-3" id="contact-channels-list"></div>
-        </div>
-
-        <!-- 5. لوحة الإدارة الفورية -->
-        <div id="view-admin" class="app-view hidden max-w-2xl mx-auto space-y-6 text-right">
-            <h2 class="text-xl font-bold text-gold-400 border-b border-white/10 pb-3">لوحة التحكم وتحديث المحتوى الفوري</h2>
-            <div class="glass-panel p-6 rounded-xl space-y-4">
-                <label class="block text-sm font-bold text-white">تعديل وصف ونبذة الموقع التعريفية</label>
-                <textarea id="admin-about-input" rows="4" class="w-full bg-stone-900 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-gold-500"></textarea>
-                <button onclick="window.saveAboutText()" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-5 py-2 rounded-lg text-xs transition-colors">حفظ التعديلات ونشرها فوراً</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- الفوتر الفاخر -->
-    <footer class="border-t border-white/5 glass-panel py-8 text-center text-xs text-gray-500 mt-12">
-        <p class="mb-2 font-bold text-gold-500">استديو نغم جود © 2026</p>
-        <p class="max-w-md mx-auto text-[11px] leading-relaxed px-4">تنفيذ وتجهيز أرقى الزفات والشيلات الحصرية بالأسماء وبأعلى معايير الهندسة الصوتية لتوثيق أسعد لحظاتكم.</p>
-    </footer>
-
-    <!-- زر الواتساب العائم الثابت -->
-    <a id="floating-whatsapp" href="https://wa.me/966503931934" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-emerald-600 rounded-full shadow-2xl flex items-center justify-center text-white text-2xl hover:scale-110 active:scale-95 transition-transform">
-        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.288 1.447 4.805 1.448 5.4 0 9.795-4.395 9.798-9.796.002-2.617-1.013-5.078-2.862-6.928C16.48 2.029 14.021.991 11.4.991c-5.405 0-9.801 4.397-9.805 9.8-.001 1.77.476 3.493 1.383 5.02L1.935 21.8l6.126-1.609z"/></svg>
-    </a>
-
-    <!-- نافذة المودال لحجز وتفصيل الطلب بالاسم -->
-    <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm hidden">
-        <div class="w-full max-w-md glass-panel p-6 rounded-2xl relative text-right">
-            <button onclick="window.closeOrderModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gold-400">✕</button>
-            <h3 class="text-lg font-bold text-gold-400 mb-4 text-center border-b border-white/5 pb-2">طلب تنفيذ وتخصيص بالاسم</h3>
-            <form onsubmit="window.handleFormOrderSubmit(event)" class="space-y-4">
-                <input type="hidden" id="modal-item-name" />
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">الاسم الكريم</label>
-                    <input type="text" id="order-client-name" required class="w-full bg-stone-900 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- الـ 13 خدمة كاملة مستقرة وثابتة بالـ HTML -->
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service1.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                    <div class="p-5 text-right flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات بالأسماء</h3>
+                        <p class="text-xs text-gray-400 mb-4 flex-grow">صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.</p>
+                        <button onclick="window.openOrderModal('زفات بالأسماء')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">رقم الجوال</label>
-                    <input type="tel" id="order-client-phone" required placeholder="05xxxxxxxx" class="w-full bg-stone-900 border border-white/10 rounded-xl p-3 text-xs text-white text-left focus:outline-none" dir="ltr" />
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service2.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                    <div class="p-5 text-right flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات ملكة</h3>
+                        <p class="text-xs text-gray-400 mb-4 flex-grow">أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.</p>
+                        <button onclick="window.openOrderModal('زفات ملكة')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">الأسماء المطلوبة بالعمل</label>
-                    <input type="text" id="order-client-names" required placeholder="مثال: العريس خالد والعروسة سارة" class="w-full bg-stone-900 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none" />
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service3.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                    <div class="p-5 text-right flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات عقد قران</h3>
+                        <p class="text-xs text-gray-400 mb-4 flex-grow">تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.</p>
+                        <button onclick="window.openOrderModal('زفات عقد قران')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">تفاصيل إضافية (مثل بدون موسيقى)</label>
-                    <textarea id="order-client-details" rows="2" class="w-full bg-stone-900 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none"></textarea>
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service4.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                    <div class="p-5 text-right flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات عروس</h3>
+                        <p class="text-xs text-gray-400 mb-4 flex-grow">طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.</p>
+                        <button onclick="window.openOrderModal('زفات عروس')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black py-3 rounded-xl text-xs shadow-lg">إرسال وتأكيد الطلب عبر واتساب</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- الكود البرمجي النقي الفعال والمحمي بالكامل في النطاق العالمي -->
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            var initialAboutText = "استديو نغم جود هو وجهتكم الإبداعية في عالم الزفات والمناسبات، نقدم تنفيذ الزفات بالأسماء، وزفات الملكة، وعقد القران، وشيلات التخرج، والمواليد، والقصائد، وخدمات إزالة الحقوق والنسخ بدون موسيقى، بجودة احترافية وتصميم صوتي مميز يجعل كل مناسبة أكثر تميزًا.";
-            var contactData = { whatsapp: "0503931934", instagram: "Zf__jood", tiktok: "Zf__jood", telegram: "Zf__jood" };
-            
-            var defaultServices = [
-                { title: 'زفات بالأسماء', desc: 'صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.', img: 'service1.jpg' },
-                { title: 'زفات ملكة', desc: 'أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.', img: 'service2.jpg' },
-                { title: 'زفات عقد قران', desc: 'تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.', img: 'service3.jpg' },
-                { title: 'زفات عروس', desc: 'طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.', img: 'service4.jpg' },
-                { title: 'شيلات تخرج', desc: 'تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.', img: 'service5.jpg' },
-                { title: 'شيلات مواليد', desc: 'نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.', img: 'service6.jpg' },
-                { title: 'شيلات ترحيب', desc: 'استقبلوا ضيوفكم بأجود شيلات الترحيب والفخر المناسبة لكافة المحافل.', img: 'service7.jpg' },
-                { title: 'شيلات مناسبات', desc: 'تغطية شاملة لكل المناسبات والأعياد العائلية والوطنية بتناسق صوتي تام.', img: 'service8.jpg' },
-                { title: 'شيلات خاصة', desc: 'إعداد وتنفيذ ألحان حصرية وفقاً لرغبة العميل وبأفكار إبداعية جديدة.', img: 'service9.jpg' },
-                { title: 'زفات بدون موسيقى', desc: 'تنفيذ أرقى الزفات باستخدام المؤثرات البشرية والآهات الطبيعية الفاخرة.', img: 'service10.jpg' },
-                { title: 'إزالة الحقوق', desc: 'خدمة سحب وإزالة الحقوق الصوتية والنسخ باحترافية وجودة عالية بدون موسيقى.', img: 'service11.jpg' },
-                { title: 'القصائد', desc: 'كتابة وإلقاء قصائد شعرية فصحى ونبطية بأصوات نخبة من الشعراء والمنشدين.', img: 'service12.jpg' },
-                { title: 'الشعر', desc: 'قصائد مدح وفخر وتوثيق لتواريخ العائلات والقبائل بأسلوب جزيل وبليغ.', img: 'service13.jpg' }
-            ];
-
-            var aboutText = localStorage.getItem('nagham_jood_about_v6') || initialAboutText;
-            var servicesList = defaultServices;
-
-            window.showView = function(viewId) {
-                document.querySelectorAll('.app-view').forEach(function(el) { el.classList.add('hidden'); });
-                var target = document.getElementById('view-' + viewId);
-                if (target) target.classList.remove('hidden');
-                document.getElementById('mobile-menu').classList.add('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
-            window.toggleMobileMenu = function() {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
-            };
-
-            window.openOrderModal = function(itemName) {
-                document.getElementById('modal-item-name').value = itemName;
-                document.getElementById('order-modal').classList.remove('hidden');
-            };
-
-            window.closeOrderModal = function() {
-                document.getElementById('order-modal').classList.add('hidden');
-            };
-
-            window.saveAboutText = function() {
-                aboutText = document.getElementById('admin-about-input').value;
-                localStorage.setItem('nagham_jood_about_v6', aboutText);
-                document.getElementById('about-text-display').innerText = aboutText;
-                alert('تم التحديث الفوري والناجح بنجاح وموقعك جاهز الحين!');
-            };
-
-            window.handleFormOrderSubmit = function(event) {
-                event.preventDefault();
-                var itemName = document.getElementById('modal-item-name').value;
-                var clientName = document.getElementById('order-client-name').value;
-                var clientPhone = document.getElementById('order-client-phone').value;
-                var clientNames = document.getElementById('order-client-names').value;
-                var clientDetails = document.getElementById('order-client-details').value;
-
-                var message = `✨ *طلب تنفيذ وتخصيص بالاسم* ✨\n\n` +
-                                `👤 *العميل:* ${clientName}\n` +
-                                `📱 *الجوال:* ${clientPhone}\n` +
-                                `🎈 *الخدمة:* ${itemName}\n` +
-                                `✍ *الأسماء المطلوب ذكرها:* ${clientNames}\n` +
-                                `📝 *تفاصيل إضافية:* ${clientDetails || 'لا يوجد ملاحظات'}`;
-
-                window.open(`https://wa.me/966${contactData.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-                window.closeOrderModal();
-            };
-
-            document.getElementById('about-text-display').innerText = aboutText;
-            document.getElementById('admin-about-input').value = aboutText;
-
-            var homeGrid = document.getElementById('home-services-grid');
-            var allGrid = document.getElementById('all-services-grid');
-            var portfolioGrid = document.getElementById('portfolio-grid');
-            
-            homeGrid.innerHTML = '';
-            allGrid.innerHTML = '';
-            portfolioGrid.innerHTML = '';
-
-            servicesList.forEach(function(srv, index) {
-                var cardHTML = `
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                        <div class="h-44 w-full bg-zinc-900 relative">
-                            <img src="${srv.img}" alt="${srv.title}" class="w-full h-full object-cover" onerror="this.src='logo.png';">
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow text-right">
-                            <h3 class="text-base font-bold text-gold-500 mb-1.5">${sr
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service5.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                    <div class="p-5 text-right flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-gold-500 mb-1">شيلات تخرج</h3>
+                        <p class="text-xs text-gray-400 mb-4 flex-grow">تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.</p>
+                        <button onclick="window.openOrderModal('شيلات تخرج')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service6.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
+                    <div class="p-5 text-right flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-gold-500 mb-1">شيلات مواليد</h3>
+                        <p class="text-xs text-gray-400 mb-4 flex-grow">نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.</p>
+                        <button onclick="window.openOrderModal('شيلات مواليد')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service7.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','obj
