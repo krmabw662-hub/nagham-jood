@@ -1,208 +1,562 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>استديو نغم جود | للزفات والشيلات الفاخرة</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Tajawal', 'sans-serif'] },
-                    colors: {
-                        gold: { 400: '#ebae35', 500: '#d4af37', 600: '#b68927' },
-                        luxury: { dark: '#050507', purple: '#1c0d2d' }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { background-color: #050507; color: #f3f4f6; font-family: 'Tajawal', sans-serif; }
-        .ambient-glow { background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%); }
-        .glass-panel { background: rgba(15, 15, 25, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.08); }
-        .glass-card { background: rgba(22, 20, 32, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.03); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: rgba(212, 175, 55, 0.3); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(147, 51, 234, 0.2); }
-    </style>
-</head>
-<body class="antialiased relative min-h-screen flex flex-col justify-between overflow-x-hidden">
+export interface Service {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+}
 
-    <!-- الإضاءة الخلفية الفاخرة المدمجة -->
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] ambient-glow -z-10 pointer-events-none"></div>
-    <div class="absolute top-1/3 left-0 w-[500px] h-[500px] ambient-glow -z-10 pointer-events-none"></div>
+export interface Work {
+  id: string;
+  title: string;
+  type: string;
+  image: string;
+  description: string;
+  detailImages?: string[];
+}
 
-    <!-- الهيدر وشريط التنقل المتجاوب -->
-    <header class="sticky top-0 z-40 w-full border-b border-white/5 glass-panel">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="window.showView('home')">
-                <div class="w-12 h-12 rounded-xl overflow-hidden bg-luxury-dark border border-gold-500/20 p-1 flex items-center justify-center">
-                    <img src="logo.png" alt="شعار استديو نغم جود" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <svg class="w-5 h-5 text-gold-500 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
-                </div>
-                <div class="text-right">
-                    <span class="block font-black text-lg bg-gradient-to-l from-gold-400 to-amber-200 bg-clip-text text-transparent">استديو نغم جود</span>
-                    <span class="block text-[9px] text-purple-300 tracking-widest -mt-1">للزفات والشيلات الفاخرة</span>
-                </div>
-            </div>
-            
-            <nav class="hidden md:flex items-center gap-2">
-                <button onclick="window.showView('home')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الرئيسية</button>
-                <button onclick="window.showView('services')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الخدمات</button>
-                <button onclick="window.showView('portfolio')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">معرض الأعمال</button>
-                <button onclick="window.showView('contact')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">اتصل بنا</button>
-            </nav>
+export interface SiteConfig {
+  description: string;
+  contactWhatsApp: string;
+  contactInstagram: string;
+  contactTikTok: string;
+  contactTelegram: string;
+  logoUrl?: string;
+  heroBackgroundUrl?: string;
+}
 
-            <div class="flex items-center gap-2">
-                <button onclick="window.showView('admin')" class="px-3 py-2 rounded-xl text-xs font-bold border border-gold-500/20 bg-white/5 text-gold-400 hover:bg-gold-500/10 transition-all">
-                    لوحة الإدارة
+export interface Order {
+  name: string;
+  phone: string;
+  eventType: string;
+  requestedNames: string;
+  details: string;
+}
+
+// البيانات الأولية الفاخرة للخدمات
+export const INITIAL_SERVICES: Service[] = [
+  {
+    id: "s1",
+    title: "زفات بالأسماء",
+    description: "تنفيذ زفات خاصة وحصرية بالأسماء مع صياغة أرقى الكلمات وتصميم هندسة صوتية بالغة الاحترافية تناسب فخامة حضوركم.",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s2",
+    title: "زفات ملكة",
+    description: "توثيق فرحة الخطوبة والملكة بكلمات عذبة وألحان راقية ممزوجة بمشاعر الحب والأمل لليلة لا تُنسى.",
+    image: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s3",
+    title: "زفات عقد قران",
+    description: "مباركة شرعية ومبهجة بأصوات ملائكية وتوزيع فاخر يناسب قدسية وجمال ميثاق عقد القران الغليظ.",
+    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s4",
+    title: "زفات عروس",
+    description: "زفات كلاسيكية وحديثة لطلة العروس الأنيقة تضفي هيبة وفخامة ودموع فرح تسحر عقول الحاضرين.",
+    image: "https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s5",
+    title: "شيلات تخرج",
+    description: "شيلات حماسية متكاملة تخلد فخر النجاح وتعب السنين بأقوى الكلمات والزغاريد لبهجة التخرج والامتياز.",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s6",
+    title: "شيلات مواليد",
+    description: "استقبال فرحة العمر الجديد بترحيبات عذبة وشيلات تفيض حباً وبراءة تهنئ الوالدين بقدوم المولود الجديد.",
+    image: "https://images.unsplash.com/photo-1519689680058-324335c77eb2?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s7",
+    title: "شيلات ترحيب",
+    description: "أقوى قصائد الترحيب بالضيوف الكرام في قاعات الأفراح والمناسبات للتعبير عن الكرم والأصالة العربية.",
+    image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s8",
+    title: "شيلات مناسبات",
+    description: "شيلات مخصصة للأعياد، الاجتماعات العائلية، مناسبات التقاعد والترقية لتكريم يليق بأصحاب الإنجاز.",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s9",
+    title: "شيلات خاصة",
+    description: "قصائد وألحان مصممة خصيصًا حسب فكرتكم ومشاعركم، نهديها لمن تحبون بصوت شجي وتأثير عاطفي مميز.",
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s10",
+    title: "زفات بدون موسيقى",
+    description: "تنفيذ وتجهيز أرقى الزفات بمؤثرات بشرية طبيعية ومؤثرات صوتية نقية تلتزم بالشرعية وتحتفظ بالفخامة الكاملة.",
+    image: "https://images.unsplash.com/photo-1516280440614-37939bbacd6a?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s11",
+    title: "إزالة الحقوق",
+    description: "خدمات احترافية لإزالة الحقوق الصوتية والنسخ المزعجة من الزفات القديمة وإعادة تحسين جودتها وهندستها مجدداً.",
+    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    id: "s12",
+    title: "القصائد والشعر",
+    description: "كتابة وإلقاء قصائد شعرية فخمة لمدح العروسين أو الترحيب بالضيوف بأقلام كبار الشعراء وتسجيل نقي.",
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop"
+  }
+];
+
+// معرض الأعمال الأولى للموقع
+export const INITIAL_WORKS: Work[] = [
+  {
+    id: "w1",
+    title: "زفة عروس النور والتاج الذهبي",
+    type: "زفات عروس",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop",
+    description: "عمل ملكي فاخر يبدأ بمقدمة شعرية مهيبة تعلن طلة العروس كالملك الحاضر، متبوعة بإيقاعات شرقية حية ومؤثرات صوتية تضفي سحراً نادراً.",
+    detailImages: [
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=600&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: "w2",
+    title: "شيلة تخرج كواسر المجد والقمة",
+    type: "شيلات تخرج",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop",
+    description: "شيلة حماسية مميزة بالأسماء تهنئ الخريج والوالدين مع توزيع شبابي حماسي يلهب مشاعر الفخر والفرح بالنجاح الباهر.",
+    detailImages: [
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: "w3",
+    title: "زفة عقد قران ميثاق القلوب",
+    type: "زفات عقد قران",
+    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop",
+    description: "زفة دافئة ومعبرة تصف فرحة التوقيع على ميثاق الزواج والوفاء، منتقاة الكلمات بألحان هادئة وصافية تجعل اللحظة مقدسة وخالدة.",
+    detailImages: [
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=600&auto=format&fit=crop"
+    ]
+  }
+];
+
+export const INITIAL_CONFIG: SiteConfig = {
+  description: "استديو نغم جود هو وجهتكم الإبداعية في عالم الزفات والمناسبات، نقدم تنفيذ الزفات بالأسماء، وزفات الملكة، وعقد القران، وشيلات التخرج، والمواليد، والقصائد، وخدمات إزالة الحقوق والنسخ بدون موسيقى، بجودة احترافية وتصميم صوتي مميز يجعل كل مناسبة أكثر تميزًا.",
+  contactWhatsApp: "0503931934",
+  contactInstagram: "Zf__jood",
+  contactTikTok: "Zf__jood",
+  contactTelegram: "Zf__jood",
+  logoUrl: "",
+  heroBackgroundUrl: "https://images.unsplash.com/photo-1516280440614-37939bbacd6a?q=80&w=1920&auto=format&fit=crop"
+};
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Service, Work, SiteConfig, INITIAL_SERVICES, INITIAL_WORKS, INITIAL_CONFIG } from '../types';
+
+const SUPABASE_CREDENTIALS_KEY = 'nagham_jood_supabase_creds';
+
+export interface SupabaseCreds {
+  url: string;
+  anonKey: string;
+}
+
+let supabaseClient: SupabaseClient | null = null;
+
+export function getStoredSupabaseCreds(): SupabaseCreds | null {
+  try {
+    const credsStr = localStorage.getItem(SUPABASE_CREDENTIALS_KEY);
+    if (credsStr) return JSON.parse(credsStr);
+  } catch (e) {
+    console.error(e);
+  }
+  
+  const envUrl = (import.meta as any).env?.VITE_SUPABASE_URL;
+  const envKey = (import.meta as any).env?.VITE_SUPABASE_ANON_KEY;
+  if (envUrl && envKey) return { url: envUrl, anonKey: envKey };
+  return null;
+}
+
+export function getSupabaseClient(): SupabaseClient | null {
+  if (supabaseClient) return supabaseClient;
+  const creds = getStoredSupabaseCreds();
+  if (creds && creds.url && creds.anonKey) {
+    try {
+      supabaseClient = createClient(creds.url, creds.anonKey);
+      return supabaseClient;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  return null;
+}
+
+export function saveSupabaseCreds(url: string, anonKey: string) {
+  if (!url || !anonKey) {
+    localStorage.removeItem(SUPABASE_CREDENTIALS_KEY);
+    supabaseClient = null;
+    return;
+  }
+  localStorage.setItem(SUPABASE_CREDENTIALS_KEY, JSON.stringify({ url, anonKey }));
+  supabaseClient = createClient(url, anonKey);
+}
+
+export function clearSupabaseCreds() {
+  localStorage.removeItem(SUPABASE_CREDENTIALS_KEY);
+  supabaseClient = null;
+}
+
+// دالات استرجاع وحفظ الخدمات والأعمال وإعدادات الموقع مع Fallback لـ LocalStorage تلقائياً...
+export async function getServices(): Promise<Service[]> {
+  const client = getSupabaseClient();
+  if (client) {
+    try {
+      const { data, error } = await client.from('services').select('*').order('id');
+      if (!error && data && data.length > 0) return data as Service[];
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+  const local = localStorage.getItem('nagham_jood_services');
+  if (local) return JSON.parse(local);
+  return INITIAL_SERVICES;
+}
+
+export async function saveServices(services: Service[]): Promise<boolean> {
+  localStorage.setItem('nagham_jood_services', JSON.stringify(services));
+  const client = getSupabaseClient();
+  if (client) {
+    try {
+      const { error } = await client.from('services').upsert(services);
+      if (!error) return true;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  return true;
+}
+
+export async function getWorks(): Promise<Work[]> {
+  const client = getSupabaseClient();
+  if (client) {
+    try {
+      const { data, error } = await client.from('works').select('*').order('id');
+      if (!error && data && data.length > 0) {
+        return data.map(w => ({
+          id: w.id,
+          title: w.title,
+          type: w.type,
+          image: w.image,
+          description: w.description,
+          detailImages: w.detail_images || w.detailImages || []
+        })) as Work[];
+      }
+    } catch (e) {}
+  }
+  const local = localStorage.getItem('nagham_jood_works');
+  if (local) return JSON.parse(local);
+  return INITIAL_WORKS;
+}
+
+export async function saveWorks(works: Work[]): Promise<boolean> {
+  localStorage.setItem('nagham_jood_works', JSON.stringify(works));
+  const client = getSupabaseClient();
+  if (client) {
+    try {
+      const mapped = works.map(w => ({
+        id: w.id,
+        title: w.title,
+        type: w.type,
+        image: w.image,
+        description: w.description,
+        detail_images: w.detailImages
+      }));
+      const { error } = await client.from('works').upsert(mapped);
+      if (!error) return true;
+    } catch (e) {}
+  }
+  return true;
+}
+
+export async function getSiteConfig(): Promise<SiteConfig> {
+  const client = getSupabaseClient();
+  if (client) {
+    try {
+      const { data, error } = await client.from('site_config').select('*').single();
+      if (!error && data) {
+        return {
+          description: data.description,
+          contactWhatsApp: data.contact_whatsapp,
+          contactInstagram: data.contact_instagram,
+          contactTikTok: data.contact_tiktok,
+          contactTelegram: data.contact_telegram,
+          logoUrl: data.logo_url,
+          heroBackgroundUrl: data.hero_background_url
+        };
+      }
+    } catch (e) {}
+  }
+  const local = localStorage.getItem('nagham_jood_config');
+  if (local) return JSON.parse(local);
+  return INITIAL_CONFIG;
+}
+
+export async function saveSiteConfig(config: SiteConfig): Promise<boolean> {
+  localStorage.setItem('nagham_jood_config', JSON.stringify(config));
+  const client = getSupabaseClient();
+  if (client) {
+    try {
+      const mapped = {
+        id: 'main',
+        description: config.description,
+        contact_whatsapp: config.contactWhatsApp,
+        contact_instagram: config.contactInstagram,
+        contact_tiktok: config.contactTikTok,
+        contact_telegram: config.contactTelegram,
+        logo_url: config.logoUrl,
+        hero_background_url: config.heroBackgroundUrl
+      };
+      const { error } = await client.from('site_config').upsert(mapped);
+      if (!error) return true;
+    } catch (e) {}
+  }
+  return true;
+}
+
+export const SUPABASE_SQL_SETUP = `
+-- كود إنشاء الجداول والسياسات الأمنية لـ Supabase SQL Editor
+create table if not exists services (
+  id text primary key,
+  title text not null,
+  description text,
+  image text
+);
+
+create table if not exists works (
+  id text primary key,
+  title text not null,
+  type text not null,
+  image text not null,
+  description text,
+  detail_images jsonb
+);
+
+create table if not exists site_config (
+  id text primary key default 'main',
+  description text,
+  contact_whatsapp text,
+  contact_instagram text,
+  contact_tiktok text,
+  contact_telegram text,
+  logo_url text,
+  hero_background_url text
+);
+
+-- السماح بالقراءة للجميع وتفعيل RLS
+alter table services enable row level security;
+alter table works enable row level security;
+alter table site_config enable row level security;
+
+create policy "Allow public read services" on services for select using (true);
+create policy "Allow public read works" on works for select using (true);
+create policy "Allow public read site_config" on site_config for select using (true);
+
+create policy "Allow all edits to services" on services for all using (true);
+create policy "Allow all edits to works" on works for all using (true);
+create policy "Allow all edits to site_config" on site_config for all using (true);
+`;
+    import React from 'react';
+
+interface LogoProps {
+  className?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+export default function Logo({ className = "", size = "md" }: LogoProps) {
+  const dimensions = { sm: "h-10 w-10", md: "h-16 w-16", lg: "h-28 w-28" };
+  const textSizes = { sm: "text-base", md: "text-xl", lg: "text-3xl" };
+
+  return (
+    <div className={`flex items-center gap-3 select-none ${className}`}>
+      <div className={`relative flex items-center justify-center ${dimensions[size]} shrink-0 rounded-full bg-gradient-to-tr from-purple-950 via-black to-purple-900 border border-gold-500/40 p-2 shadow-lg shadow-gold-500/10`}>
+        <div className="absolute inset-0.5 rounded-full border border-dashed border-gold-400/20 animate-spin" style={{ animationDuration: '40s' }} />
+        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_2px_8px_rgba(212,175,55,0.4)]">
+          <path
+            d="M50,15 C55,15 65,25 65,35 C65,48 45,55 45,65 L45,72 C45,75 42,78 38,78 C34,78 31,75 31,71 C31,65 37,60 41,58 L41,35 L60,30 L60,40 C60,45 56,48 51,48"
+            fill="none; stroke="url(#goldGradient)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
+          />
+          <path d="M42,14 L50,8 L58,14 L50,18 Z" fill="url(#goldGradient)" />
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFF5C2" />
+              <stop offset="30%" stopColor="#D4AF37" />
+              <stop offset="70%" stopColor="#AA7C11" />
+              <stop offset="100%" stopColor="#FFF5C2" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div className="flex flex-col text-right">
+        <span className={`${textSizes[size]} font-black tracking-wide bg-gradient-to-l from-gold-300 via-gold-500 to-white bg-clip-text text-transparent`}>
+          نـغـم جــود
+        </span>
+        <span className="text-[10px] md:text-xs font-medium text-purple-300 uppercase opacity-90">
+          استديو زفات وشيلات فاخرة
+        </span>
+      </div>
+    </div>
+  );
+}
+        import React, { useState } from 'react';
+import Logo from './Logo';
+import { Menu, X, Home, Music, Image as ImageIcon, PlusCircle, PhoneCall, ShieldAlert, Settings } from 'lucide-react';
+
+interface NavbarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  isLoggedIn: boolean;
+  onLogout: () => void;
+}
+
+export default function Navbar({ activeTab, setActiveTab, isLoggedIn, onLogout }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = [
+    { id: 'home', label: 'الرئيسية', icon: Home },
+    { id: 'services', label: 'خدماتنا', icon: Music },
+    { id: 'gallery', label: 'معرض الأعمال', icon: ImageIcon },
+    { id: 'order', label: 'طلب جديد', icon: PlusCircle },
+    { id: 'contact', label: 'اتصل بنا', icon: PhoneCall },
+  ];
+
+  return (
+    <nav className="sticky top-0 z-50 w-full bg-black/60 backdrop-blur-xl border-b border-gold-500/15">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex-shrink-0 cursor-pointer" onClick={() => setActiveTab('home')}>
+            <Logo size="sm" />
+          </div>
+          <div className="hidden md:flex items-center gap-1">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                    isActive ? 'text-gold-400 bg-gold-500/10 border border-gold-500/20' : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{item.label}</span>
                 </button>
-                <button onclick="window.toggleMobileMenu()" class="md:hidden text-gray-300 p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-            </div>
+              );
+            })}
+          </div>
+          {/* لوحة الإدارة */}
+          <div className="hidden md:flex">
+            <button onClick={() => setActiveTab('admin')} className="text-xs font-bold text-gold-400 flex items-center gap-1.5 px-4 py-2 bg-gold-500/10 border border-gold-500/25 rounded-full">
+              <Settings className="w-4 h-4" />
+              <span>لوحة التحكم</span>
+            </button>
+          </div>
         </div>
+      </div>
+    </nav>
+  );
+}import React, { useState, useEffect } from 'react';
+import { Order } from '../types';
+import { Sparkles, MessageSquare, Mic, AlertCircle, HelpCircle } from 'lucide-react';
 
-        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-luxury-dark/95 p-4 flex flex-col gap-2">
-            <button onclick="window.showView('home')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الرئيسية</button>
-            <button onclick="window.showView('services')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الخدمات</button>
-            <button onclick="window.showView('portfolio')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">معرض الأعمال</button>
-            <button onclick="window.showView('contact')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">اتصل بنا</button>
-        </div>
-    </header>
+interface OrderFormProps {
+  initialEventType?: string;
+  whatsappNumber: string;
+}
 
-    <!-- المحتوى العام المضمون والآمن 100% وثابت بالكامل -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
+export default function OrderForm({ initialEventType = "", whatsappNumber }: OrderFormProps) {
+  const [formData, setFormData] = useState<Order>({
+    name: "", phone: "", eventType: "", requestedNames: "", details: ""
+  });
+
+  useEffect(() => {
+    if (initialEventType) setFormData(prev => ({ ...prev, eventType: initialEventType }));
+  }, [initialEventType]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.phone) return;
+
+    const formattedMessage = `✨ *طلب تنفيذ جديد - استديو نغم جود* ✨
+-----------------------------
+👤 *الاسم الكريم:* ${formData.name}
+📱 *رقم الجوال:* ${formData.phone}
+🎉 *نوع المناسبة:* ${formData.eventType}
+✍️ *الأسماء المطلوبة:* ${formData.requestedNames}
+📝 *تفاصيل الطلب:*
+${formData.details}
+-----------------------------
+🚀 تم الإرسال من الموقع الإلكتروني الخاص بالاستديو.`;
+
+    const encodedText = encodeURIComponent(formattedMessage);
+    window.open(`https://wa.me/966${whatsappNumber.replace(/\D/g, '')}?text=${encodedText}`, '_blank');
+  };
+
+  return (
+    <div className="max-w-3xl mx-auto px-4 py-12 text-right">
+      <div className="glass-panel rounded-3xl p-8 border border-gold-500/15">
+        <h2 className="text-2xl font-bold text-white mb-6">تأكيد حجز وتنفيذ زفة مخصصة بالاسم</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-bold text-gray-300 mb-2">الاسم الكريم</label>
+            <input type="text" onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-black border border-gold-500/20 text-white" required />
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-gray-300 mb-2">رقم الجوال</label>
+            <input type="tel" onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-black border border-gold-500/20 text-white" required />
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-gray-300 mb-2">المناسبة والأسماء المطلوبة</label>
+            <input type="text" onChange={(e) => setFormData({...formData, requestedNames: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-black border border-gold-500/20 text-white" required />
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-gray-300 mb-2">تفاصيل إضافية</label>
+            <textarea onChange={(e) => setFormData({...formData, details: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-black border border-gold-500/20 text-white" rows={4} required />
+          </div>
+          <button type="submit" className="w-full py-4 bg-gradient-to-l from-gold-400 to-gold-600 text-black font-black rounded-xl">
+            إرسال الطلب عبر واتساب للبدء فوراً
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}import React from 'react';
+import { MessageCircle } from 'lucide-react';
+
+interface FloatingWhatsAppProps {
+  phoneNumber: string;
+}
+
+export default function FloatingWhatsApp({ phoneNumber }: FloatingWhatsAppProps) {
+  const handleClick = () => {
+    const message = encodeURIComponent("مرحباً استديو نغم جود، أريد الاستفسار عن تفاصيل الزفات والشيلات الحصرية بالأسماء.");
+    window.open(`https://wa.me/966${phoneNumber.replace(/\D/g, '')}?text=${message}`, '_blank');
+  };
+
+  return (
+    <div className="fixed bottom-6 left-6 z-50 animate-bounce">
+      <button
+        onClick={handleClick}
+        className="group relative flex items-center justify-center w-14 h-14 bg-gradient-to-tr from-green-500 to-green-600 rounded-full shadow-2xl border border-green-400/40 text-white"
+      >
+        <span className="absolute -inset-1.5 rounded-full bg-green-500/20 animate-ping" />
+        <MessageCircle className="w-7 h-7" />
+      </button>
+    </div>
+  );
+}
+                
         
-        <!-- 1. قسم الصفحة الرئيسية -->
-        <div id="view-home" class="app-view space-y-20">
-            <section class="text-center py-16 rounded-3xl glass-panel border border-gold-500/10 relative overflow-hidden shadow-2xl">
-                <div class="w-28 h-28 mx-auto mb-6 bg-luxury-dark rounded-full flex items-center justify-center border border-gold-500/20 shadow-xl overflow-hidden p-2">
-                    <img src="logo.png" alt="شعار استديو نغم جود" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <svg class="w-10 h-10 text-gold-500 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
-                </div>
-                <h1 class="text-3xl sm:text-6xl font-black bg-gradient-to-l from-gold-400 via-amber-200 to-white bg-clip-text text-transparent mb-6">استديو نغم جود</h1>
-                <p id="about-text-display" class="max-w-3xl mx-auto text-gray-300 text-sm sm:text-base leading-relaxed px-6 font-light"></p>
-                <div class="mt-8 flex flex-wrap justify-center gap-4 px-4">
-                    <button onclick="window.showView('services')" class="bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black px-6 py-3.5 rounded-xl text-sm shadow-lg active:scale-95 transition-transform">اكتشف خدماتنا</button>
-                    <button onclick="window.openOrderModal('طلب عام من الاستديو')" class="bg-white/5 border border-white/10 text-white font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-white/10 transition-all">اطلب تنفيذ بالاسم</button>
-                </div>
-            </section>
-
-            <!-- عرض شبكة الخدمات في الرئيسية -->
-            <section class="space-y-8">
-                <div class="flex justify-between items-center">
-                    <button onclick="window.showView('services')" class="text-gold-500 hover:text-gold-400 font-bold text-sm">عرض جميع الخدمات ←</button>
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-white border-r-4 border-gold-500 pr-3">خدماتنا الإبداعية</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service1.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                        <div class="p-5 flex flex-col flex-grow text-right">
-                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات بالأسماء</h3>
-                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.</p>
-                            <button onclick="window.openOrderModal('زفات بالأسماء')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
-                        </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service2.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                        <div class="p-5 flex flex-col flex-grow text-right">
-                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات ملكة</h3>
-                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.</p>
-                            <button onclick="window.openOrderModal('زفات ملكة')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
-                        </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service3.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                        <div class="p-5 flex flex-col flex-grow text-right">
-                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات عقد قران</h3>
-                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.</p>
-                            <button onclick="window.openOrderModal('زفات عقد قران')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
-                        </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service4.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                        <div class="p-5 flex flex-col flex-grow text-right">
-                            <h3 class="text-base font-bold text-gold-500 mb-1.5">زفات عروس</h3>
-                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.</p>
-                            <button onclick="window.openOrderModal('زفات عروس')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
-                        </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service5.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                        <div class="p-5 flex flex-col flex-grow text-right">
-                            <h3 class="text-base font-bold text-gold-500 mb-1.5">شيلات تخرج</h3>
-                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.</p>
-                            <button onclick="window.openOrderModal('شيلات تخرج')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
-                        </div>
-                    </div>
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                        <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service6.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                        <div class="p-5 flex flex-col flex-grow text-right">
-                            <h3 class="text-base font-bold text-gold-500 mb-1.5">شيلات مواليد</h3>
-                            <p class="text-gray-400 text-xs mb-4 flex-grow font-light">نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.</p>
-                            <button onclick="window.openOrderModal('شيلات مواليد')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- 2. قسم صفحة الخدمات الكاملة المكتوبة بالكامل مباشرة -->
-        <div id="view-services" class="app-view hidden space-y-8">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">كافة الخدمات الفنية المتاحة</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- الـ 13 خدمة كاملة مستقرة وثابتة بالـ HTML -->
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service1.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                    <div class="p-5 text-right flex flex-col flex-grow">
-                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات بالأسماء</h3>
-                        <p class="text-xs text-gray-400 mb-4 flex-grow">صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.</p>
-                        <button onclick="window.openOrderModal('زفات بالأسماء')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service2.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                    <div class="p-5 text-right flex flex-col flex-grow">
-                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات ملكة</h3>
-                        <p class="text-xs text-gray-400 mb-4 flex-grow">أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.</p>
-                        <button onclick="window.openOrderModal('زفات ملكة')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service3.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                    <div class="p-5 text-right flex flex-col flex-grow">
-                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات عقد قران</h3>
-                        <p class="text-xs text-gray-400 mb-4 flex-grow">تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.</p>
-                        <button onclick="window.openOrderModal('زفات عقد قران')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service4.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                    <div class="p-5 text-right flex flex-col flex-grow">
-                        <h3 class="text-base font-bold text-gold-500 mb-1">زفات عروس</h3>
-                        <p class="text-xs text-gray-400 mb-4 flex-grow">طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.</p>
-                        <button onclick="window.openOrderModal('زفات عروس')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service5.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                    <div class="p-5 text-right flex flex-col flex-grow">
-                        <h3 class="text-base font-bold text-gold-500 mb-1">شيلات تخرج</h3>
-                        <p class="text-xs text-gray-400 mb-4 flex-grow">تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.</p>
-                        <button onclick="window.openOrderModal('شيلات تخرج')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service6.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','object-contain');"></div>
-                    <div class="p-5 text-right flex flex-col flex-grow">
-                        <h3 class="text-base font-bold text-gold-500 mb-1">شيلات مواليد</h3>
-                        <p class="text-xs text-gray-400 mb-4 flex-grow">نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.</p>
-                        <button onclick="window.openOrderModal('شيلات مواليد')" class="w-full bg-gold-500 text-black font-bold py-2 rounded-xl text-xs">طلب الخدمة</button>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                    <div class="h-44 w-full bg-zinc-900/50 flex items-center justify-center overflow-hidden"><img src="service7.jpg" class="w-full h-full object-cover" onerror="this.src='logo.png'; this.classList.add('p-6','obj
