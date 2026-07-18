@@ -24,8 +24,8 @@
     <style>
         body { background-color: #050507; color: #f3f4f6; font-family: 'Tajawal', sans-serif; }
         .ambient-glow { background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%); }
-        .glass-panel { background: rgba(15, 15, 25, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.08); }
-        .glass-card { background: rgba(22, 20, 32, 0.65); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.03); transition: all 0.3s ease; }
+        .glass-panel { background: rgba(15, 15, 25, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.08); }
+        .glass-card { background: rgba(22, 20, 32, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.03); transition: all 0.3s ease; }
         .glass-card:hover { border-color: rgba(212, 175, 55, 0.3); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(147, 51, 234, 0.2); }
     </style>
 </head>
@@ -39,11 +39,9 @@
     <header class="sticky top-0 z-40 w-full border-b border-white/5 glass-panel">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showView('home')">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-purple-800 to-gold-500 p-[1px]">
-                    <div class="w-full h-full bg-luxury-dark rounded-[10px] flex items-center justify-center">
-                        <!-- أيقونة مايكروفون مدمجة SVG لا تنكسر أبداً -->
-                        <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
-                    </div>
+                <div class="w-12 h-12 rounded-xl overflow-hidden bg-luxury-dark border border-gold-500/20 p-1 flex items-center justify-center">
+                    <img src="logo.png" alt="شعار استديو نغم جود" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <svg class="w-5 h-5 text-gold-500 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
                 </div>
                 <div class="text-right">
                     <span class="block font-black text-lg bg-gradient-to-l from-gold-400 to-amber-200 bg-clip-text text-transparent">استديو نغم جود</span>
@@ -51,7 +49,6 @@
                 </div>
             </div>
             
-            <!-- أزرار التنقل السريع للنسختين -->
             <nav class="hidden md:flex items-center gap-2">
                 <button onclick="showView('home')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الرئيسية</button>
                 <button onclick="showView('services')" class="px-4 py-2 rounded-xl text-sm font-bold text-gray-300 hover:text-gold-400 transition-colors">الخدمات</button>
@@ -69,7 +66,6 @@
             </div>
         </div>
 
-        <!-- القائمة المنسدلة للجوال -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-luxury-dark/95 p-4 flex flex-col gap-2">
             <button onclick="showView('home')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الرئيسية</button>
             <button onclick="showView('services')" class="w-full text-right py-2.5 px-4 rounded-lg text-sm font-bold text-gray-300 hover:bg-white/5">الخدمات</button>
@@ -84,8 +80,9 @@
         <!-- 1. قسم الصفحة الرئيسية -->
         <div id="view-home" class="app-view space-y-20">
             <section class="text-center py-16 rounded-3xl glass-panel border border-gold-500/10 relative overflow-hidden shadow-2xl">
-                <div class="w-24 h-24 mx-auto mb-6 bg-luxury-dark rounded-full flex items-center justify-center border border-gold-500/20 shadow-xl text-gold-500">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                <div class="w-28 h-28 mx-auto mb-6 bg-luxury-dark rounded-full flex items-center justify-center border border-gold-500/20 shadow-xl overflow-hidden p-2">
+                    <img src="logo.png" alt="شعار استديو نغم جود" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <svg class="w-10 h-10 text-gold-500 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
                 </div>
                 <h1 class="text-3xl sm:text-6xl font-black bg-gradient-to-l from-gold-400 via-amber-200 to-white bg-clip-text text-transparent mb-6">استديو نغم جود</h1>
                 <p id="about-text-display" class="max-w-3xl mx-auto text-gray-300 text-sm sm:text-base leading-relaxed px-6 font-light"></p>
@@ -111,9 +108,9 @@
             <div id="all-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
-        <!-- 3. قسم معرض الأعمال التوضيحي -->
+        <!-- 3. قسم معرض الأعمال التوضيحي المحدث ليتسع لـ 8 أعمال بالكامل -->
         <div id="view-portfolio" class="app-view hidden space-y-8">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">روائع من إنتاجاتنا الفنية</h2>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">روائع من إنتاجاتنا الفنية المعمدة</h2>
             <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
@@ -149,7 +146,7 @@
     <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm hidden">
         <div class="w-full max-w-md glass-panel p-6 rounded-2xl relative text-right">
             <button onclick="closeOrderModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gold-400">✕</button>
-            <h3 class="text-base font-bold text-gold-400 mb-4 text-center border-b border-white/5 pb-2">طلب تنفيذ وتخصيص بالاسم</h3>
+            <h3 class="text-lg font-bold text-gold-400 mb-4 text-center border-b border-white/5 pb-2">طلب تنفيذ وتخصيص بالاسم</h3>
             <form onsubmit="handleFormOrderSubmit(event)" class="space-y-4">
                 <input type="hidden" id="modal-item-name" />
                 <div>
@@ -173,77 +170,94 @@
         </div>
     </div>
 
-    <!-- الكود البرمجي النقي الفعال والمحمي من الأخطاء -->
+    <!-- الكود البرمجي النقي الموثق والمثبت في النطاق العالمي -->
     <script>
-        const initialAboutText = "استديو نغم جود هو وجهتكم الإبداعية في عالم الزفات والمناسبات، نقدم تنفيذ الزفات بالأسماء، وزفات الملكة، وعقد القران، وشيلات التخرج، والمواليد، والقصائد، وخدمات إزالة الحقوق والنسخ بدون موسيقى، بجودة احترافية وتصميم صوتي مميز يجعل كل مناسبة أكثر تميزًا.";
-        const contactData = { whatsapp: "0503931934", instagram: "Zf__jood", tiktok: "Zf__jood", telegram: "Zf__jood" };
-        
-        const defaultServices = [
-            { title: 'زفات بالأسماء', desc: 'صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=400' },
-            { title: 'زفات ملكة', desc: 'أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.', img: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=400' },
-            { title: 'زفات عقد قران', desc: 'تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.', img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=400' },
-            { title: 'زفات عروس', desc: 'طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400' },
-            { title: 'شيلات تخرج', desc: 'تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.', img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=400' },
-            { title: 'شيلات مواليد', desc: 'نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.', img: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&q=80&w=400' },
-            { title: 'شيلات ترحيب', desc: 'استقبلوا ضيوفكم بأجود شيلات الترحيب والفخر المناسبة لكافة المحافل.', img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=400' },
-            { title: 'شيلات مناسبات', desc: 'تغطية شاملة لكل المناسبات والأعياد العائلية والوطنية بتناسق صوتي تام.', img: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80&w=400' },
-            { title: 'شيلات خاصة', desc: 'إعداد وتنفيذ ألحان حصرية وفقاً لرغبة العميل وبأفكار إبداعية جديدة.', img: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=400' },
-            { title: 'زفات بدون موسيقى', desc: 'تنفيذ أرقى الزفات باستخدام المؤثرات البشرية والآهات الطبيعية الفاخرة.', img: 'https://images.unsplash.com/photo-1484755560695-a4c7300c5c29?auto=format&fit=crop&q=80&w=400' },
-            { title: 'إزالة الحقوق', desc: 'خدمة سحب وإزالة الحقوق الصوتية والنسخ باحترافية وجودة عالية بدون موسيقى.', img: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=400' },
-            { title: 'القصائد', desc: 'كتابة وإلقاء قصائد شعرية فصحى ونبطية بأصوات نخبة من الشعراء والمنشدين.', img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=400' },
-            { title: 'الشعر', desc: 'قصائد مدح وفخر وتوثيق لتواريخ العائلات والقبائل بأسلوب جزيل وبليغ.', img: 'https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=400' }
-        ];
+        window.addEventListener('DOMContentLoaded', function() {
+            var initialAboutText = "استديو نغم جود هو وجهتكم الإبداعية في عالم الزفات والمناسبات، نقدم تنفيذ الزفات بالأسماء، وزفات الملكة، وعقد القران، وشيلات التخرج، والمواليد، والقصائد، وخدمات إزالة الحقوق والنسخ بدون موسيقى، بجودة احترافية وتصميم صوتي مميز يجعل كل مناسبة أكثر تميزًا.";
+            var contactData = { whatsapp: "0503931934", instagram: "Zf__jood", tiktok: "Zf__jood", telegram: "Zf__jood" };
+            
+            var defaultServices = [
+                { title: 'زفات بالأسماء', desc: 'صياغة زفات متكاملة بأسماء العرسان لتوثيق ليلة العمر بأجمل الألحان.', img: 'service1.jpg' },
+                { title: 'زفات ملكة', desc: 'أجمل زفات عقد القران والخطوبة بكلمات مبهجة تعبر عن فرحتكم المتميزة.', img: 'service2.jpg' },
+                { title: 'زفات عقد قران', desc: 'تنفيذ خاص بمناسبة الميثاق الغليظ بأصوات فخمة تناسب بهجة المناسبة.', img: 'service3.jpg' },
+                { title: 'زفات عروس', desc: 'طلة ملكية مهيبة للعروس مع موسيقى ومؤثرات صوتية تأخذ الأنفاس.', img: 'service4.jpg' },
+                { title: 'شيلات تخرج', desc: 'تخليد لحظات النجاح والتفوق بشيلات حماسية وقصائد مخصصة للخريجين.', img: 'service5.jpg' },
+                { title: 'شيلات مواليد', desc: 'نهنئكم بقدوم المولود الجديد بشيلة ترحيبية أنيقة تدوم ذكراها للأبد.', img: 'service6.jpg' },
+                { title: 'شيلات ترحيب', desc: 'استقبلوا ضيوفكم بأجود شيلات الترحيب والفخر المناسبة لكافة المحافل.', img: 'service7.jpg' },
+                { title: 'شيلات مناسبات', desc: 'تغطية شاملة لكل المناسبات والأعياد العائلية والوطنية بتناسق صوتي تام.', img: 'service8.jpg' },
+                { title: 'شيلات خاصة', desc: 'إعداد وتنفيذ ألحان حصرية وفقاً لرغبة العميل وبأفكار إبداعية جديدة.', img: 'service9.jpg' },
+                { title: 'زفات بدون موسيقى', desc: 'تنفيذ أرقى الزفات باستخدام المؤثرات البشرية والآهات الطبيعية الفاخرة.', img: 'service10.jpg' },
+                { title: 'إزالة الحقوق', desc: 'خدمة سحب وإزالة الحقوق الصوتية والنسخ باحترافية وجودة عالية بدون موسيقى.', img: 'service11.jpg' },
+                { title: 'القصائد', desc: 'كتابة وإلقاء قصائد شعرية فصحى ونبطية بأصوات نخبة من الشعراء والمنشدين.', img: 'service12.jpg' },
+                { title: 'الشعر', desc: 'قصائد مدح وفخر وتوثيق لتواريخ العائلات والقبائل بأسلوب جزيل وبليغ.', img: 'service13.jpg' }
+            ];
 
-        // تنظيف وحماية الذاكرة من البيانات السابقة المتعارضة
-        localStorage.removeItem('jood_services');
-        localStorage.removeItem('jood_portfolio');
+            var aboutText = localStorage.getItem('nagham_jood_about_v5') || initialAboutText;
+            var servicesList = defaultServices;
 
-        let aboutText = localStorage.getItem('nagham_jood_about_secure') || initialAboutText;
-        let servicesList = JSON.parse(localStorage.getItem('nagham_jood_services_secure')) || defaultServices;
+            window.showView = function(viewId) {
+                document.querySelectorAll('.app-view').forEach(function(el) { el.classList.add('hidden'); });
+                var target = document.getElementById('view-' + viewId);
+                if (target) target.classList.remove('hidden');
+                document.getElementById('mobile-menu').classList.add('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
 
-        function showView(viewId) {
-            document.querySelectorAll('.app-view').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`view-${viewId}`).classList.remove('hidden');
-            document.getElementById('mobile-menu').classList.add('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+            window.toggleMobileMenu = function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            };
 
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
+            window.openOrderModal = function(itemName) {
+                document.getElementById('modal-item-name').value = itemName;
+                document.getElementById('order-modal').classList.remove('hidden');
+            };
 
-        function renderWebsiteContent() {
-            try {
+            window.closeOrderModal = function() {
+                document.getElementById('order-modal').classList.add('hidden');
+            };
+
+            window.saveAboutText = function() {
+                aboutText = document.getElementById('admin-about-input').value;
+                localStorage.setItem('nagham_jood_about_v5', aboutText);
                 document.getElementById('about-text-display').innerText = aboutText;
-                document.getElementById('admin-about-input').value = aboutText;
+                alert('تم التحديث الفوري والناجح بنجاح وموقعك جاهز الحين!');
+            };
 
-                const homeGrid = document.getElementById('home-services-grid');
-                const allGrid = document.getElementById('all-services-grid');
-                const portfolioGrid = document.getElementById('portfolio-grid');
-                
-                homeGrid.innerHTML = '';
-                allGrid.innerHTML = '';
-                portfolioGrid.innerHTML = '';
+            window.handleFormOrderSubmit = function(event) {
+                event.preventDefault();
+                var itemName = document.getElementById('modal-item-name').value;
+                var clientName = document.getElementById('order-client-name').value;
+                var clientPhone = document.getElementById('order-client-phone').value;
+                var clientNames = document.getElementById('order-client-names').value;
+                var clientDetails = document.getElementById('order-client-details').value;
 
-                servicesList.forEach((srv, index) => {
-                    const cardHTML = `
-                        <div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-                            <div class="h-44 w-full bg-zinc-900 relative">
-                                <img src="${srv.img}" alt="${srv.title}" class="w-full h-full object-cover" />
-                            </div>
-                            <div class="p-5 flex flex-col flex-grow text-right">
-                                <h3 class="text-base font-bold text-gold-500 mb-1.5">${srv.title}</h3>
-                                <p class="text-gray-400 text-xs mb-4 flex-grow line-clamp-3 leading-relaxed font-light">${srv.desc}</p>
-                                <button onclick="openOrderModal('${srv.title}')" class="w-full mt-auto bg-gradient-to-l from-gold-500 to-gold-600 text-black font-black text-xs py-2.5 rounded-xl">اطلب تنفيذها باسمك</button>
-                            </div>
-                        </div>`;
-                    
-                    allGrid.innerHTML += cardHTML;
-                    if (index < 6) homeGrid.innerHTML += cardHTML;
+                var message = `✨ *طلب تنفيذ وتخصيص بالاسم* ✨\n\n` +
+                                `👤 *العميل:* ${clientName}\n` +
+                                `📱 *الجوال:* ${clientPhone}\n` +
+                                `🎈 *الخدمة:* ${itemName}\n` +
+                                `✍ *الأسماء المطلوب ذكرها:* ${clientNames}\n` +
+                                `📝 *تفاصيل إضافية:* ${clientDetails || 'لا يوجد ملاحظات'}`;
 
-                    if (index < 6) {
-                        portfolioGrid.innerHTML += `
-                            <div class="glass-card rounded-2xl overflow-hidden">
-                                <div class="h-48 w-full bg-zinc-900 relative">
-                                    <img src="${srv.img}" alt="${srv.title}" class="w-full h-full object-cover" />
-                                    <span class="absolute top-3 right-3 bg-pu
+                window.open(`https://wa.me/966${contactData.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+                window.closeOrderModal();
+            };
+
+            document.getElementById('about-text-display').innerText = aboutText;
+            document.getElementById('admin-about-input').value = aboutText;
+
+            var homeGrid = document.getElementById('home-services-grid');
+            var allGrid = document.getElementById('all-services-grid');
+            var portfolioGrid = document.getElementById('portfolio-grid');
+            
+            homeGrid.innerHTML = '';
+            allGrid.innerHTML = '';
+            portfolioGrid.innerHTML = '';
+
+            servicesList.forEach(function(srv, index) {
+                var cardHTML = '<div class="glass-card rounded-2xl overflow-hidden flex flex-col h-full">' +
+                    '<div class="h-44 w-full bg-zinc-900 relative">' +
+                        '<img src="' + srv.img + '" alt="' + srv.title + '" class="w-full h-full object-cover" onerror="this.src=\'logo.png\';">' +
+                    '</div>' +
+                    '<div class="p-5 flex flex-col flex-grow text-right">' +
+                        '<h3 class="text-base font-bold text-gold-500 mb-1.5">' + srv.title + '</h3>' +
+                        '<p class
